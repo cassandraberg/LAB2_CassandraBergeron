@@ -10,14 +10,12 @@ public class Player : MonoBehaviour
     public float _jumpForce = 10f;
     private Rigidbody rb;
 
-    // Start is called before the first frame update
     private void Start()
     {
-        transform.position = new Vector3(5f, 0f, 1f); // mettre en float
+        transform.position = new Vector3(1f, 0f, 1f); 
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         Move();
