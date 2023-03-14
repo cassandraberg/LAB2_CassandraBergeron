@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _vitesse = 100; 
     private Rigidbody rb;
 
+    //Méthodes privées
     private void Start()
     {
         transform.position = new Vector3(0.5f, 0.15f, 1f); 
@@ -27,5 +28,12 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(positionX, 0f, positionZ);
         rb.velocity = direction * Time.fixedDeltaTime * _vitesse;
+    }
+
+    // Méthodes publiques
+
+    public void GameEnd()
+    {
+        this.gameObject.SetActive(false);
     }
 }
