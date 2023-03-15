@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndManager : MonoBehaviour
 {
     // Attributs
     private GameManager _gameManager;
     private Player _player;
+
+    // Méthodes privées
 
     private void Start()
     {
@@ -16,13 +19,19 @@ public class EndManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        int indexScene = SceneManager.GetActiveScene().buildIndex;
+
+        if(indexScene == 2)
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-            _player.GameEnd();
+            if (collision.gameObject.tag == "Player")
+            {
+                //gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                _player.GameEnd();
+            }
         }
-
+        else
+        {
+            SceneManager.LoadScene(indexScene + 1);
+        }
     }
-
-
 }
