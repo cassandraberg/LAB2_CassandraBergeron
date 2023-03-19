@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
+    //Attributs
     [SerializeField] private float _vitesseRotationY = 0.5f;
-    void Start()
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.Rotate(0f, _vitesseRotationY, 0f);
     }
