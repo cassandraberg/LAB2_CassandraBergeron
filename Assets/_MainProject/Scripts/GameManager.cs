@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Attributs
+    private int _pointage;
 
     // Méthodes privées
-
     private void Awake()
     {
         int nbGestionJeu = FindObjectsOfType<GameManager>().Length;
@@ -21,14 +21,28 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    void Start()
+    private void Start()
     {
-        
+        _pointage = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private static void InstructionsDepart()
     {
-        
+        Debug.Log("*** Course à obstacles");
+        Debug.Log("Le but du jeu est d'atteindre la zone d'arrivée le plus rapidement possible");
+        Debug.Log("Chaque contact avec un obstable entraînera une pénalité");
+        Debug.Log("");
+    }
+
+    // Méthodes publiques 
+    public void AugmenterPointage()
+    {
+        _pointage++;
+    }
+
+    // Accesseur qui retourne la valeur de l'attribut pointage
+    public int GetPointage()
+    {
+        return _pointage;
     }
 }
