@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +26,12 @@ public class EndManager : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                //gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                int error = _gameManager.GetPointage();
+                Debug.Log("Le temps total est de : " + Time.time + " secondes");
+                Debug.Log("Vous avez accroché : " + _gameManager.GetPointage() + " obstacles");
+
+                float total = Time.time + error;
+                Debug.Log("Temps final : " + total + " secondes");
                 _player.GameEnd();
             }
         }

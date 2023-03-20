@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _pointage = 0;
+        InstructionsDepart();
     }
 
     private static void InstructionsDepart()
