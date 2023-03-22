@@ -31,17 +31,20 @@ public class EndManager : MonoBehaviour
 
             if (noScene == (SceneManager.sceneCountInBuildSettings - 1)) 
             {
-                _endGame = true;
-                int accrochages = _gameManager.GetPointage(); 
-                float tempsTotalniv1 = _gameManager.GetTempsLv1() + _gameManager.GetAccrochagesLv1(); 
-                
-                float _tempsNiveau2 = Time.time - _gameManager.GetTempsLv1();
-                int _accrochagesNiveau2 = _gameManager.GetPointage() - _gameManager.GetAccrochagesLv1(); 
-                float tempsTotalniv2 = _tempsNiveau2 + _accrochagesNiveau2;
+                _gameManager.SetLv3(_gameManager.GetAccrochage(), Time.time);
 
-                float _tempsNiveau3 = Time.time - (_gameManager.GetTempsLv1() + _gameManager.GetTempsLv2());
-                int _accrochagesNiveau3 = _gameManager.GetPointage() - _gameManager.GetAccrochagesLv3();
-                float tempsTotalniv3 = _tempsNiveau3 + _accrochagesNiveau3; 
+                _endGame = true;
+                float tempsTotalniv1 = _gameManager.GetTempsLv1() + _gameManager.GetAccrochagesLv1();
+                float tempsTotalniv2 = _gameManager.GetTempsLv2() + _gameManager.GetAccrochagesLv2();
+                float tempsTotalniv3 = _gameManager.GetTempsLv3() + _gameManager.GetAccrochagesLv3();
+
+                //float _tempsNiveau2 = Time.time - _gameManager.GetTempsLv1();
+                //int _accrochagesNiveau2 = _gameManager.GetAccrochage() - _gameManager.GetAccrochagesLv1(); 
+                //float tempsTotalniv2 = _tempsNiveau2 + _accrochagesNiveau2;
+
+                //float _tempsNiveau3 = Time.time - (_gameManager.GetTempsLv1() + _gameManager.GetTempsLv2());
+                //int _accrochagesNiveau3 = _gameManager.GetAccrochage() - _gameManager.GetAccrochagesLv3();
+                //float tempsTotalniv3 = _tempsNiveau3 + _accrochagesNiveau3; 
 
                 // Affichage des résultats finaux niveau 1
                 Debug.Log("Fin de partie");
@@ -50,13 +53,13 @@ public class EndManager : MonoBehaviour
                 Debug.Log("Temps total niveau 1 : " + tempsTotalniv1.ToString("f2") + " secondes");
 
                 // niveau 2
-                Debug.Log("Le temps pour le niveau 2 est de : " + _tempsNiveau2.ToString("f2") + " secondes");
-                Debug.Log("Vous avez accroché au niveau 2 : " + _accrochagesNiveau2 + " obstacles");
+                Debug.Log("Le temps pour le niveau 2 est de : " + _gameManager.GetTempsLv2().ToString("f2") + " secondes");
+                Debug.Log("Vous avez accroché au niveau 2 : " + _gameManager.GetAccrochagesLv2() + " obstacles");
                 Debug.Log("Temps total niveau 2 : " + tempsTotalniv2.ToString("f2") + " secondes");
 
                 // niveau 3
-                Debug.Log("Le temps pour le niveau 3 est de : " + _tempsNiveau3.ToString("f2") + " secondes");
-                Debug.Log("Vous avez accroché au niveau 3 : " + _accrochagesNiveau3 + " obstacles");
+                Debug.Log("Le temps pour le niveau 3 est de : " + _gameManager.GetTempsLv3().ToString("f2") + " secondes");
+                Debug.Log("Vous avez accroché au niveau 3 : " + _gameManager.GetAccrochagesLv3() + " obstacles");
                 Debug.Log("Temps total niveau 3 : " + tempsTotalniv3.ToString("f2") + " secondes");
 
                 //total
@@ -68,11 +71,10 @@ public class EndManager : MonoBehaviour
             {
                 // Appelle la méthode publique dans gestion jeu pour conserver les informations du niveau 1-2-3
                 if(noScene == 0)
-                    _gameManager.SetLv1(_gameManager.GetPointage(), Time.time);
+                    _gameManager.SetLv1(_gameManager.GetAccrochage(), Time.time);
                 else if(noScene == 1)
-                    _gameManager.SetLv2(_gameManager.GetPointage(), Time.time);
-                else if(noScene == 2)
-                    _gameManager.SetLv3(_gameManager.GetPointage(), Time.time);
+                    _gameManager.SetLv2(_gameManager.GetAccrochage(), Time.time);
+
                 // Charge la scène suivante
                 SceneManager.LoadScene(noScene + 1);
             }

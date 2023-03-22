@@ -24,7 +24,7 @@ public class CollisionManager : MonoBehaviour
                 _touch = true;
                 gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
              
-                _gestionJeu.AugmenterPointage();
+                _gestionJeu.AugmenterAccrochage();
             }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Attributs
-    private int _pointage;
+    private int _accrochages;
     private int _accrochageLv1;
     private float _timeLv1;
     private float _timeLv2;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        _pointage = 0;
+        _accrochages = 0;
         InstructionsDepart();
     }
 
@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Méthodes publiques 
-    public void AugmenterPointage()
+    public void AugmenterAccrochage()
     {
-        _pointage++;
+        _accrochages++;
     }
 
-    public int GetPointage()
+    public int GetAccrochage()
     {
-        return _pointage;
+        return _accrochages;
     }
 
     public float GetTempsLv1()
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     //Méthode qui reçoit les valeurs pour le niveau 2 et qui modifie les attributs respectifs
     public void SetLv1(int accrochages, float tempsNiv1)
     {
+        _accrochages = 0;
         _accrochageLv1 = accrochages;
         _timeLv1 = tempsNiv1;
     }
@@ -79,11 +80,11 @@ public class GameManager : MonoBehaviour
         return _accrochageLv2;
     }
 
-    // Méthode qui reçoit les valeurs pour le niveau 2 et qui modifie les attributs respectifs
-    public void SetLv2(int accrochages, float tempsNiv1)
+    public void SetLv2(int accrochages, float tempsNiv2)
     {
+        _accrochages = 0;
         _accrochageLv2 = accrochages;
-        _timeLv2 = tempsNiv1;
+        _timeLv2 = tempsNiv2 - _timeLv1;
     }
 
     public float GetTempsLv3()
@@ -96,10 +97,10 @@ public class GameManager : MonoBehaviour
         return _accrochageLv3;
     }
 
-    // Méthode qui reçoit les valeurs pour le niveau 2 et qui modifie les attributs respectifs
-    public void SetLv3(int accrochages, float tempsNiv1)
+    public void SetLv3(int accrochages, float tempsNiv3)
     {
+        _accrochages = 0;
         _accrochageLv3 = accrochages;
-        _timeLv3 = tempsNiv1;
+        _timeLv3 = tempsNiv3 - _timeLv1 - _timeLv2;
     }
 }
