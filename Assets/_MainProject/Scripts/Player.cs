@@ -30,13 +30,16 @@ public class Player : MonoBehaviour
 
         rb.velocity = direction * Time.fixedDeltaTime * _vitesse;
 
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        targetRotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                360 * Time.fixedDeltaTime);
-        rb.MovePosition(rb.position + direction * _vitesse * Time.fixedDeltaTime);
-        rb.MoveRotation(targetRotation);
+        if(direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            targetRotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    targetRotation,
+                    360 * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * _vitesse * Time.fixedDeltaTime);
+            rb.MoveRotation(targetRotation);
+        }
     }
 
     // Méthodes publiques

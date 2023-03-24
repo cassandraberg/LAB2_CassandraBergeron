@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     private int _accrochageLv2;
     private float _timeLv3;
     private int _accrochageLv3;
+    // List d'objet accroché par le joueur.
+    private List<Collider> _collisionObjects = new List<Collider>();
 
     // Méthodes privées
     private void Awake()
@@ -45,6 +48,17 @@ public class GameManager : MonoBehaviour
     public void AugmenterAccrochage()
     {
         _accrochages++;
+    }
+
+
+    public void AugmenterAccrochage(Collider thisCollider)
+    {
+        // Si l'objet accroché n'est pas déjà dans la liste d'objet, incrémenter le nombre d'accrochages.
+        if (!_collisionObjects.Contains(thisCollider))
+        {
+            _collisionObjects.Add(thisCollider);
+            _accrochages++;
+        }        
     }
 
     public int GetAccrochage()
