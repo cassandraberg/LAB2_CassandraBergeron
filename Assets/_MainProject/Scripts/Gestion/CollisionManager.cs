@@ -25,7 +25,8 @@ public class CollisionManager : MonoBehaviour
                 gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
 
                 // Passer en paramètre l'objet accroché par le joueur.
-                _gestionJeu.AugmenterAccrochage(collision.contacts[0].thisCollider);
+                //_gestionJeu.AugmenterAccrochage(collision.contacts[0].thisCollider);
+                _gestionJeu.AugmenterAccrochage();
             }
         }
     }

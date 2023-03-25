@@ -26,7 +26,7 @@ public class EndManager : MonoBehaviour
         {
             int noScene = SceneManager.GetActiveScene().buildIndex;
 
-            // Appelle la méthode publique dans gestion jeu pour conserver les informations du niveau 1-2
+            // Appelle la méthode publique dans gestion jeu pour conserver les informations du niveau 1-2-3
             if (noScene == 0)
                 _gameManager.SetLv1(_gameManager.GetAccrochage(), Time.time);
             else if (noScene == 1)
